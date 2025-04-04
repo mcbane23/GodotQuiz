@@ -1,5 +1,12 @@
 [
 	{
+		"key": "start",
+		"translations": {
+			"en": "Start",
+			"sr": "Започни"
+		}
+	},
+	{
 		"key": "congrats",
 		"translations": {
 			"en": "Congratulations",

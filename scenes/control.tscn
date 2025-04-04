@@ -1,14 +1,14 @@
 [gd_scene load_steps=5 format=3 uid="uid://d1ndol6401brv"]
 
-[ext_resource type="Script" uid="uid://dgjlms88gomet" path="res://scripts/control.gd" id="1_lib0w"]
-[ext_resource type="Theme" uid="uid://cq0m3bxrr77sk" path="res://theme.tres" id="2_d21fh"]
+[ext_resource type="Script" uid="uid://dgjlms88gomet" path="res://scripts/control.gd" id="1_r67kn"]
+[ext_resource type="Theme" uid="uid://cq0m3bxrr77sk" path="res://theme.tres" id="2_brbbq"]
 
-[sub_resource type="Gradient" id="Gradient_1lde6"]
+[sub_resource type="Gradient" id="Gradient_r67kn"]
 offsets = PackedFloat32Array(0, 0.994505)
 colors = PackedColorArray(0.13577, 0.273826, 0.505951, 1, 0.310913, 0.504277, 0.828224, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_7qmi0"]
-gradient = SubResource("Gradient_1lde6")
+gradient = SubResource("Gradient_r67kn")
 fill_from = Vector2(0, 1)
 fill_to = Vector2(0, 0)
 
@@ -19,9 +19,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_lib0w")
+script = ExtResource("1_r67kn")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="Background" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -38,7 +38,7 @@ anchor_right = 1.0
 offset_top = 50.0
 offset_bottom = 119.0
 grow_horizontal = 2
-theme = ExtResource("2_d21fh")
+theme = ExtResource("2_brbbq")
 text = "Question"
 horizontal_alignment = 1
 autowrap_mode = 2
@@ -51,7 +51,7 @@ anchor_right = 1.0
 offset_top = 818.0
 offset_bottom = 887.0
 grow_horizontal = 2
-theme = ExtResource("2_d21fh")
+theme = ExtResource("2_brbbq")
 text = "Question"
 horizontal_alignment = 1
 autowrap_mode = 2
@@ -65,7 +65,7 @@ anchor_bottom = 1.0
 offset_top = -69.0
 offset_right = 93.0
 grow_vertical = 0
-theme = ExtResource("2_d21fh")
+theme = ExtResource("2_brbbq")
 text = "Time"
 horizontal_alignment = 1
 autowrap_mode = 2
@@ -81,7 +81,7 @@ offset_bottom = 60.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 4
-theme = ExtResource("2_d21fh")
+theme = ExtResource("2_brbbq")
 theme_override_constants/separation = 25
 
 [node name="Button1" type="Button" parent="VBoxContainer"]
@@ -107,7 +107,7 @@ offset_bottom = -161.0
 grow_horizontal = 2
 grow_vertical = 0
 size_flags_vertical = 8
-theme = ExtResource("2_d21fh")
+theme = ExtResource("2_brbbq")
 text = "Restart"
 
 [node name="ExitButton" type="Button" parent="."]
@@ -117,8 +117,9 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -37.0
+offset_left = -236.0
 offset_top = -137.0
+offset_right = 24.0
 grow_horizontal = 0
 grow_vertical = 0
 size_flags_vertical = 8

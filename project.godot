@@ -11,9 +11,17 @@ config_version=5
 [application]
 
 config/name="Kviz"
-run/main_scene="res://control.tscn"
+config/name_localized={
+"en": "Quiz",
+"sr": "Kviz"
+}
+run/main_scene="uid://dubk067ecx42"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[autoload]
+
+Global="*res://scripts/global.gd"
 
 [display]
 
