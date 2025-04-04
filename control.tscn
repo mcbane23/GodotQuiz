@@ -124,7 +124,7 @@ grow_vertical = 0
 size_flags_vertical = 8
 focus_mode = 0
 theme_override_font_sizes/font_size = 55
-text = "Изађи"
+text = "Exit"
 
 [node name="Timer2" type="Timer" parent="."]
 autostart = true

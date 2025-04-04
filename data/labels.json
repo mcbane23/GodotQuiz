@@ -1,0 +1,65 @@
+[
+	{
+		"key": "congrats",
+		"translations": {
+			"en": "Congratulations",
+			"sr": "Честитам"
+		}
+	},
+	{
+		"key": "restart_game",
+		"translations": {
+			"en": "Start new game",
+			"sr": "Започни нову игру"
+		}
+	},
+	{
+		"key": "exit",
+		"translations": {
+			"en": "Exit",
+			"sr": "Изађи"
+		}
+	},
+	{
+		"key": "error",
+		"translations": {
+			"en": "Error",
+			"sr": "Greška"
+		}
+	},
+	{
+		"key": "oh_no",
+		"translations": {
+			"en": "Oh, no",
+			"sr": "Ох, не"
+		}
+	},
+	{
+		"key": "correct",
+		"translations": {
+			"en": "Correct",
+			"sr": "Тачно"
+		}
+	},
+	{
+		"key": "incorrect",
+		"translations": {
+			"en": "Inorrect",
+			"sr": "Нетачно"
+		}
+	},
+	{
+		"key": "time_is_up",
+		"translations": {
+			"en": "Time is up",
+			"sr": "Време је истекло"
+		}
+	},
+	{
+		"key": "your_result_is",
+		"translations": {
+			"en": "Your result is",
+			"sr": "Твој резултат је"
+		}
+	}
+]

@@ -3,6 +3,7 @@ extends Control
 @onready var DisplayText = $Question
 @onready var Result = $Result
 @onready var RestartButton = $RestartButton
+@onready var ExitButton = $ExitButton
 @onready var Button1 = $VBoxContainer/Button1
 @onready var Button2 = $VBoxContainer/Button2
 @onready var Button3 = $VBoxContainer/Button3
@@ -11,8 +12,10 @@ extends Control
 # configure round time and number of questions per game
 var game_time: int = 30
 var game_number_of_questions: int = 10
+var language = "en"
 
-var questions : Array = read_json_file("res://questions.json")
+var questions : Array = read_json_file("res://data/questions_" + language + ".json")
+var labels_data: Array = read_json_file("res://data/labels.json")
 var item : Dictionary
 var question_number: int = 1
 var correct_answers : float = 0
@@ -28,9 +31,17 @@ func read_json_file(path):
 	print(json_content)
 	return json_content 
 	
+# Function to get label by key and language
+func get_label(key: String) -> String:
+	for label in labels_data:
+		if label.key == key:
+			return label.translations[language] if language in label.translations else "Translation not found"
+	return "Key not found"
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	RestartButton.text = "Започни нову игру"
+	RestartButton.text = get_label("restart_game")
+	ExitButton.text = get_label("exit")
 	refresh_scene()
 
 func refresh_scene():
@@ -61,10 +72,10 @@ func show_result():
 	var score = round(correct_answers / game_number_of_questions * 100)
 	var greet
 	if score >= 60:
-		greet = "Честитам"
+		greet = get_label("congrats")
 	else:
-		greet = "Ох, не"
-	DisplayText.text = "{greet}! Твој резултат је: {correct} ({score}%)".format({"greet": greet, "correct": int(correct_answers), "score": score})
+		greet = get_label("oh_no")
+	DisplayText.text = "{greet}! {your_result_is}: {correct} ({score}%)".format({"greet": greet, "your_result_is": get_label("your_result_is"), "correct": int(correct_answers), "score": score})
 
 # show/hide elements
 func hide_buttons(state):
@@ -83,7 +94,7 @@ func hide_buttons(state):
 	Result.hide()
 	
 func _on_restart_button_pressed():
-	questions = read_json_file("res://questions.json")
+	questions = read_json_file("res://data/questions_" + language + ".json")
 	correct_answers = 0
 	question_number = 1
 	refresh_scene()
@@ -93,9 +104,9 @@ func _on_option_button_pressed(number):
 		var resultText = ""
 		if number == item.correctOptionIndex:
 			correct_answers += 1
-			resultText = "Тачно"
+			resultText = get_label("correct")
 		else:
-			resultText = "Нетачно"
+			resultText = get_label("incorrect")
 		question_number += 1
 		delay_next_screen(resultText)
 
@@ -106,7 +117,7 @@ func _on_timer_timeout():
 	clock -= 1
 	if clock == 0 and answer_selected == false and game_end == false:
 		question_number += 1
-		delay_next_screen("Време је истекло")
+		delay_next_screen(get_label("time_is_up"))
 	else:
 		Clock.text = str(clock)
 
