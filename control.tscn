@@ -1,0 +1,137 @@
+[gd_scene load_steps=5 format=3 uid="uid://d1ndol6401brv"]
+
+[ext_resource type="Script" uid="uid://dgjlms88gomet" path="res://scripts/control.gd" id="1_lib0w"]
+[ext_resource type="Theme" uid="uid://cq0m3bxrr77sk" path="res://theme.tres" id="2_d21fh"]
+
+[sub_resource type="Gradient" id="Gradient_1lde6"]
+offsets = PackedFloat32Array(0, 0.994505)
+colors = PackedColorArray(0.13577, 0.273826, 0.505951, 1, 0.310913, 0.504277, 0.828224, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_7qmi0"]
+gradient = SubResource("Gradient_1lde6")
+fill_from = Vector2(0, 1)
+fill_to = Vector2(0, 0)
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_lib0w")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_7qmi0")
+
+[node name="Question" type="Label" parent="."]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 50.0
+offset_bottom = 119.0
+grow_horizontal = 2
+theme = ExtResource("2_d21fh")
+text = "Question"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Result" type="Label" parent="."]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 818.0
+offset_bottom = 887.0
+grow_horizontal = 2
+theme = ExtResource("2_d21fh")
+text = "Question"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Timer" type="Label" parent="."]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -69.0
+offset_right = 93.0
+grow_vertical = 0
+theme = ExtResource("2_d21fh")
+text = "Time"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -83.0
+offset_bottom = 60.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 4
+theme = ExtResource("2_d21fh")
+theme_override_constants/separation = 25
+
+[node name="Button1" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Option 1"
+
+[node name="Button2" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Option 2"
+
+[node name="Button3" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Option 3"
+
+[node name="RestartButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -298.0
+offset_bottom = -161.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 8
+theme = ExtResource("2_d21fh")
+text = "Restart"
+
+[node name="ExitButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -37.0
+offset_top = -137.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_vertical = 8
+focus_mode = 0
+theme_override_font_sizes/font_size = 55
+text = "Изађи"
+
+[node name="Timer2" type="Timer" parent="."]
+autostart = true
+
+[connection signal="pressed" from="VBoxContainer/Button1" to="." method="_on_option_button_pressed" binds= [0]]
+[connection signal="pressed" from="VBoxContainer/Button2" to="." method="_on_option_button_pressed" binds= [1]]
+[connection signal="pressed" from="VBoxContainer/Button3" to="." method="_on_option_button_pressed" binds= [2]]
+[connection signal="pressed" from="RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="timeout" from="Timer2" to="." method="_on_timer_timeout"]
