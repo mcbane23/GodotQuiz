@@ -5,7 +5,7 @@ var labels_data: Array = read_json_file("res://data/labels.json")
 # configure round time, number of questions per game and language
 var game_time: int = 30
 var game_number_of_questions: int = 10
-var language = "en"
+var language = "sr"
 
 func read_json_file(path):
 	var file = FileAccess.open(path,FileAccess.READ)

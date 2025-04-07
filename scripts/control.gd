@@ -23,8 +23,17 @@ var clock: int = 0
 var answer_selected: bool = false
 var game_end: bool = false
 
+var stylebox_theme_normal: StyleBoxFlat
+var stylebox_theme_hover: StyleBoxFlat
+var stylebox_theme_pressed: StyleBoxFlat
+const green = Color(0.0, 0.8, 0.0)
+const red = Color(0.8,0.0,0.0,1.0)
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	stylebox_theme_normal = Button1.get_theme_stylebox("normal")
+	stylebox_theme_hover = Button1.get_theme_stylebox("hover")
+	stylebox_theme_pressed = Button1.get_theme_stylebox("pressed")
 	RestartButton.text = Global.get_label("restart_game")
 	ExitButton.text = Global.get_label("exit")
 	refresh_scene()
@@ -33,6 +42,7 @@ func refresh_scene():
 	answer_selected = false
 	game_end = false
 	reset_timer()
+	reset_button_style()
 	if question_number > game_number_of_questions:
 		show_result()
 	else:
@@ -89,12 +99,42 @@ func _on_option_button_pressed(number):
 		var resultText = ""
 		if number == item.correctOptionIndex:
 			correct_answers += 1
+			highlight_button(number, green)
 			resultText = Global.get_label("correct")
 		else:
+			highlight_button(number, red)
 			resultText = Global.get_label("incorrect")
 		question_number += 1
 		delay_next_screen(resultText)
 
+func highlight_button(number, color):
+	match number:
+		0:
+			set_stylebox_color(Button1, color)
+		1:
+			set_stylebox_color(Button2, color)
+		2:
+			set_stylebox_color(Button3, color)
+			
+func set_stylebox_color(button, color: Color):
+	var new_stylebox : StyleBoxFlat = StyleBoxFlat.new()
+	new_stylebox.bg_color = color
+	new_stylebox.border_color = color
+	button.add_theme_stylebox_override("normal", new_stylebox)
+	button.add_theme_stylebox_override("hover", new_stylebox)
+	button.add_theme_stylebox_override("pressed", new_stylebox)
+
+func reset_button_style():
+	Button1.add_theme_stylebox_override("normal", stylebox_theme_normal)
+	Button2.add_theme_stylebox_override("normal", stylebox_theme_normal)
+	Button3.add_theme_stylebox_override("normal", stylebox_theme_normal)
+	Button1.add_theme_stylebox_override("hover", stylebox_theme_hover)
+	Button2.add_theme_stylebox_override("hover", stylebox_theme_hover)
+	Button3.add_theme_stylebox_override("hover", stylebox_theme_hover)
+	Button1.add_theme_stylebox_override("pressed", stylebox_theme_pressed)
+	Button2.add_theme_stylebox_override("pressed", stylebox_theme_pressed)
+	Button3.add_theme_stylebox_override("pressed", stylebox_theme_pressed)
+	
 func _on_exit_button_pressed():
 	get_tree().quit()
 
