@@ -1,17 +1,15 @@
 extends Control
 
 @onready var DisplayText = $Question
-@onready var Result = $Result
 @onready var RestartButton = $RestartButton
 @onready var ExitButton = $ExitButton
-#@onready var Button1 = $VBoxContainer/Button1
-#@onready var Button2 = $VBoxContainer/Button2
-#@onready var Button3 = $VBoxContainer/Button3
-@onready var Button1 = $GridContainer/Button4
-@onready var Button2 = $GridContainer/Button5
-@onready var Button3 = $GridContainer/Button6
+@onready var Button1 = $GridContainer/Button1
+@onready var Button2 = $GridContainer/Button2
+@onready var Button3 = $GridContainer/Button3
 @onready var VisualTimer = $TimerPanel/ColorRect
 @onready var TimerPanel = $TimerPanel
+@onready var Result = $Result
+@onready var _Timer = $Timer2
 
 # configure round time and number of questions per game
 var game_time: int = Global.game_time
@@ -27,17 +25,13 @@ var clock: int = 0
 var answer_selected: bool = false
 var game_end: bool = false
 
-var stylebox_theme_normal: StyleBoxFlat
-var stylebox_theme_hover: StyleBoxFlat
-var stylebox_theme_pressed: StyleBoxFlat
-const green = Color(0.0, 0.862, 0.492)
+var stylebox_theme_disabled: StyleBoxFlat
+const green = Color(0.0, 0.863, 0.494)
 const red = Color(0.694,0.13,0.122)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	stylebox_theme_normal = Button1.get_theme_stylebox("normal")
-	stylebox_theme_hover = Button1.get_theme_stylebox("hover")
-	stylebox_theme_pressed = Button1.get_theme_stylebox("pressed")
+	stylebox_theme_disabled = Button1.get_theme_stylebox("disabled")
 	RestartButton.text = Global.get_label("restart_game")
 	ExitButton.text = Global.get_label("exit")
 	refresh_scene()
@@ -64,7 +58,7 @@ func show_question():
 	Button1.text = item.options[0]
 	Button2.text = item.options[1]
 	Button3.text = item.options[2]
-		
+
 func show_result():
 	hide_buttons(true)
 	game_end = true
@@ -91,7 +85,7 @@ func hide_buttons(state):
 		TimerPanel.hide()
 		RestartButton.show()
 	Result.hide()
-	
+
 func _on_restart_button_pressed():
 	questions = Global.read_json_file("res://data/questions_" + language + ".json")
 	correct_answers = 0
@@ -100,45 +94,43 @@ func _on_restart_button_pressed():
 
 func _on_option_button_pressed(number):
 	if answer_selected == false:
-		var resultText = ""
 		if number == item.correctOptionIndex:
 			correct_answers += 1
 			highlight_button(number, green)
-			resultText = Global.get_label("correct")
+			disable_buttons()
 		else:
 			highlight_button(number, red)
-			resultText = Global.get_label("incorrect")
+			disable_buttons()
 		question_number += 1
-		delay_next_screen("")
+		delay_next_screen()
 
 func highlight_button(number, color):
-	match number:
-		0:
-			set_stylebox_color(Button1, color)
-		1:
-			set_stylebox_color(Button2, color)
-		2:
-			set_stylebox_color(Button3, color)
-			
-func set_stylebox_color(button, color: Color):
 	var new_stylebox : StyleBoxFlat = StyleBoxFlat.new()
 	new_stylebox.bg_color = color
-	new_stylebox.border_color = color
-	button.add_theme_stylebox_override("normal", new_stylebox)
-	button.add_theme_stylebox_override("hover", new_stylebox)
-	button.add_theme_stylebox_override("pressed", new_stylebox)
+	match number:
+		0:
+			Button1.add_theme_stylebox_override("disabled", new_stylebox)
+		1:
+			Button2.add_theme_stylebox_override("disabled", new_stylebox)
+		2:
+			Button3.add_theme_stylebox_override("disabled", new_stylebox)
+			
+func disable_buttons():
+	Button1.disabled = true
+	Button2.disabled = true
+	Button3.disabled = true
+	
+func enable_buttons():
+	Button1.disabled = false
+	Button2.disabled = false
+	Button3.disabled = false
 
 func reset_button_style():
-	Button1.add_theme_stylebox_override("normal", stylebox_theme_normal)
-	Button2.add_theme_stylebox_override("normal", stylebox_theme_normal)
-	Button3.add_theme_stylebox_override("normal", stylebox_theme_normal)
-	Button1.add_theme_stylebox_override("hover", stylebox_theme_hover)
-	Button2.add_theme_stylebox_override("hover", stylebox_theme_hover)
-	Button3.add_theme_stylebox_override("hover", stylebox_theme_hover)
-	Button1.add_theme_stylebox_override("pressed", stylebox_theme_pressed)
-	Button2.add_theme_stylebox_override("pressed", stylebox_theme_pressed)
-	Button3.add_theme_stylebox_override("pressed", stylebox_theme_pressed)
-	
+	enable_buttons()
+	Button1.add_theme_stylebox_override("disabled", stylebox_theme_disabled)
+	Button2.add_theme_stylebox_override("disabled", stylebox_theme_disabled)
+	Button3.add_theme_stylebox_override("disabled", stylebox_theme_disabled)
+
 func _on_exit_button_pressed():
 	get_tree().quit()
 
@@ -147,17 +139,20 @@ func _on_timer_timeout():
 	VisualTimer.size.x -= 1080 / game_time
 	if clock == 0 and answer_selected == false and game_end == false:
 		question_number += 1
-		delay_next_screen(Global.get_label("time_is_up"))
+		Result.show()
+		Result.text = Global.get_label("time_is_up")
+		delay_next_screen()
 
 func reset_timer():
 	clock = game_time
 	VisualTimer.size.x = 1080
+	_Timer.start()
 
-func delay_next_screen(text):
+func delay_next_screen():
+	disable_buttons()
 	TimerPanel.hide()
-	Result.show()
+	_Timer.stop()
 	answer_selected = true
-	Result.text = text
-	await get_tree().create_timer(2).timeout
+	await get_tree().create_timer(3).timeout
 	reset_timer()
 	refresh_scene()
