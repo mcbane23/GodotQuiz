@@ -31,6 +31,10 @@ window/stretch/mode="viewport"
 window/stretch/aspect="expand"
 window/handheld/orientation=1
 
+[gui]
+
+theme/custom="uid://cq0m3bxrr77sk"
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"

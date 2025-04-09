@@ -4,9 +4,12 @@ extends Control
 @onready var Result = $Result
 @onready var RestartButton = $RestartButton
 @onready var ExitButton = $ExitButton
-@onready var Button1 = $VBoxContainer/Button1
-@onready var Button2 = $VBoxContainer/Button2
-@onready var Button3 = $VBoxContainer/Button3
+#@onready var Button1 = $VBoxContainer/Button1
+#@onready var Button2 = $VBoxContainer/Button2
+#@onready var Button3 = $VBoxContainer/Button3
+@onready var Button1 = $GridContainer/Button4
+@onready var Button2 = $GridContainer/Button5
+@onready var Button3 = $GridContainer/Button6
 @onready var VisualTimer = $TimerPanel/ColorRect
 @onready var TimerPanel = $TimerPanel
 
@@ -27,8 +30,8 @@ var game_end: bool = false
 var stylebox_theme_normal: StyleBoxFlat
 var stylebox_theme_hover: StyleBoxFlat
 var stylebox_theme_pressed: StyleBoxFlat
-const green = Color(0.0, 0.8, 0.0)
-const red = Color(0.8,0.0,0.0,1.0)
+const green = Color(0.0, 0.862, 0.492)
+const red = Color(0.694,0.13,0.122)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

@@ -25,7 +25,17 @@ size_flags_horizontal = 4
 script = ExtResource("1_o5qli")
 metadata/_edit_use_anchors_ = true
 
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0745098, 0.160784, 0.239216, 1)
+
 [node name="Background" type="TextureRect" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -47,6 +57,7 @@ grow_horizontal = 0
 grow_vertical = 0
 size_flags_vertical = 8
 focus_mode = 0
+theme_type_variation = &"RoundButton"
 theme_override_font_sizes/font_size = 55
 text = "Exit"
 
@@ -63,23 +74,23 @@ offset_right = 383.0
 offset_bottom = 109.5
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("2_0wfyh")
+theme_type_variation = &"RoundButton"
 theme_override_font_sizes/font_size = 160
 text = "Start"
 
 [node name="GridContainer" type="GridContainer" parent="."]
 layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
+anchors_preset = 10
 anchor_right = 1.0
-offset_left = -532.0
+offset_right = 271.0
 offset_bottom = 200.0
-grow_horizontal = 0
+grow_horizontal = 2
+scale = Vector2(0.8, 0.8)
 columns = 2
 
 [node name="Sr" type="Button" parent="GridContainer"]
 layout_mode = 2
-size_flags_horizontal = 3
+size_flags_horizontal = 2
 size_flags_vertical = 3
 theme = ExtResource("2_0wfyh")
 theme_override_constants/align_to_largest_stylebox = 1
@@ -88,7 +99,7 @@ flat = true
 
 [node name="En" type="Button" parent="GridContainer"]
 layout_mode = 2
-size_flags_horizontal = 3
+size_flags_horizontal = 10
 size_flags_vertical = 3
 theme = ExtResource("2_0wfyh")
 theme_override_constants/align_to_largest_stylebox = 1
