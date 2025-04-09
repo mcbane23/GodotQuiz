@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://d1ndol6401brv"]
 
-[ext_resource type="Script" uid="uid://dgjlms88gomet" path="res://scripts/control.gd" id="1_r67kn"]
+[ext_resource type="Script" uid="uid://dgjlms88gomet" path="res://scripts/game.gd" id="1_r67kn"]
 [ext_resource type="Theme" uid="uid://cq0m3bxrr77sk" path="res://themes/theme.tres" id="2_brbbq"]
 
 [sub_resource type="Gradient" id="Gradient_r67kn"]
@@ -12,7 +12,7 @@ gradient = SubResource("Gradient_r67kn")
 fill_from = Vector2(0, 1)
 fill_to = Vector2(0, 0)
 
-[node name="Control" type="Control"]
+[node name="Game" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -36,8 +36,8 @@ custom_minimum_size = Vector2(50, 0)
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_top = 99.0
-offset_bottom = 168.0
+offset_top = 200.0
+offset_bottom = 269.0
 grow_horizontal = 2
 theme = ExtResource("2_brbbq")
 text = "Question"
@@ -50,26 +50,11 @@ custom_minimum_size = Vector2(50, 0)
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_top = 571.0
-offset_bottom = 640.0
+offset_top = 1250.0
+offset_bottom = 1319.0
 grow_horizontal = 2
 theme = ExtResource("2_brbbq")
 text = "Result"
-horizontal_alignment = 1
-autowrap_mode = 2
-metadata/_edit_lock_ = true
-
-[node name="Timer" type="Label" parent="."]
-custom_minimum_size = Vector2(50, 0)
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -69.0
-offset_right = 93.0
-grow_vertical = 0
-theme = ExtResource("2_brbbq")
-text = "Time"
 horizontal_alignment = 1
 autowrap_mode = 2
 metadata/_edit_lock_ = true
@@ -135,6 +120,28 @@ metadata/_edit_lock_ = true
 
 [node name="Timer2" type="Timer" parent="."]
 autostart = true
+
+[node name="TimerPanel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = 390.0
+offset_bottom = 420.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="ColorRect" type="ColorRect" parent="TimerPanel"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 5.0
+offset_bottom = 25.0
+grow_horizontal = 2
+color = Color(3.08037e-06, 0.862334, 0.492369, 1)
+metadata/_edit_lock_ = true
 
 [connection signal="pressed" from="VBoxContainer/Button1" to="." method="_on_option_button_pressed" binds= [0]]
 [connection signal="pressed" from="VBoxContainer/Button2" to="." method="_on_option_button_pressed" binds= [1]]

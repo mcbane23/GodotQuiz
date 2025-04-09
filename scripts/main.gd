@@ -25,4 +25,4 @@ func update_buttons():
 	ExitButton.text = Global.get_label("exit")
 	
 func _on_start_pressed():
-	get_tree().change_scene_to_file("res://scenes/control.tscn")
+	get_tree().change_scene_to_file("res://scenes/game.tscn")

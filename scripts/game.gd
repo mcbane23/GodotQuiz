@@ -7,7 +7,8 @@ extends Control
 @onready var Button1 = $VBoxContainer/Button1
 @onready var Button2 = $VBoxContainer/Button2
 @onready var Button3 = $VBoxContainer/Button3
-@onready var Clock = $Timer
+@onready var VisualTimer = $TimerPanel/ColorRect
+@onready var TimerPanel = $TimerPanel
 
 # configure round time and number of questions per game
 var game_time: int = Global.game_time
@@ -78,13 +79,13 @@ func hide_buttons(state):
 		Button1.show()
 		Button2.show()
 		Button3.show()
-		Clock.show()
+		TimerPanel.show()
 		RestartButton.hide()
 	else:
 		Button1.hide()
 		Button2.hide()
 		Button3.hide()
-		Clock.hide()
+		TimerPanel.hide()
 		RestartButton.show()
 	Result.hide()
 	
@@ -105,7 +106,7 @@ func _on_option_button_pressed(number):
 			highlight_button(number, red)
 			resultText = Global.get_label("incorrect")
 		question_number += 1
-		delay_next_screen(resultText)
+		delay_next_screen("")
 
 func highlight_button(number, color):
 	match number:
@@ -140,18 +141,17 @@ func _on_exit_button_pressed():
 
 func _on_timer_timeout():
 	clock -= 1
+	VisualTimer.size.x -= 1080 / game_time
 	if clock == 0 and answer_selected == false and game_end == false:
 		question_number += 1
 		delay_next_screen(Global.get_label("time_is_up"))
-	else:
-		Clock.text = str(clock)
 
 func reset_timer():
 	clock = game_time
-	Clock.text = str(clock)
+	VisualTimer.size.x = 1080
 
 func delay_next_screen(text):
-	Clock.hide()
+	TimerPanel.hide()
 	Result.show()
 	answer_selected = true
 	Result.text = text
