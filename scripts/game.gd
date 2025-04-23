@@ -2,12 +2,11 @@ extends Control
 
 @onready var DisplayText = $Background/MarginContainer/Rows/Question
 @onready var ExitButton = $Background/MarginContainer/Rows/ExitButton
-@onready var Button1 = $Background/MarginContainer/Rows/GridContainer/Button1
-@onready var Button2 = $Background/MarginContainer/Rows/GridContainer/Button2
-@onready var Button3 = $Background/MarginContainer/Rows/GridContainer/Button3
-@onready var VisualTimer = $Background/MarginContainer/Rows/PanelContainer/TimerPanel/ColorRect
-@onready var TimerPanel = $Background/MarginContainer/Rows/PanelContainer/TimerPanel
-@onready var Result = $Background/MarginContainer/Rows/PanelContainer/Result
+@onready var Button1 = $Background/MarginContainer/Rows/ButtonsContainer/Button1
+@onready var Button2 = $Background/MarginContainer/Rows/ButtonsContainer/Button2
+@onready var Button3 = $Background/MarginContainer/Rows/ButtonsContainer/Button3
+@onready var Progress = $Background/MarginContainer/Rows/TimerContainer/ProgressBar
+@onready var Result = $Background/MarginContainer/Rows/TimerContainer/Result
 @onready var _Timer = $Timer
 
 var questions : Array = Global.get_questions()
@@ -39,7 +38,6 @@ func refresh_scene():
 		show_question()
 		
 func show_question():
-	hide_buttons(false)
 	# shuffle questions
 	questions.shuffle()
 	# pick first one from shuffled array
@@ -50,20 +48,6 @@ func show_question():
 	Button1.text = item.option1
 	Button2.text = item.option2
 	Button3.text = item.option3
-
-# show/hide elements
-func hide_buttons(state):
-	if state == false:
-		Button1.show()
-		Button2.show()
-		Button3.show()
-		TimerPanel.show()
-	else:
-		Button1.hide()
-		Button2.hide()
-		Button3.hide()
-		TimerPanel.hide()
-	Result.hide()
 
 func _on_option_button_pressed(number):
 	if answer_selected == false:
@@ -109,21 +93,22 @@ func _on_exit_button_pressed():
 
 func _on_timer_timeout():
 	clock -= 1
-	VisualTimer.size.x -= (Global.screen_size.x - 40) / Global.game_time
+	var decreaseValue: float = 100.0 / Global.game_time
+	Progress.value -= decreaseValue
 	if clock == 0 and answer_selected == false and game_end == false:
 		question_number += 1
-		Result.show()
+		Progress.value = 0
 		Result.text = Global.get_label("time_is_up")
 		delay_next_screen()
 
 func reset_timer():
+	Result.text = ""
 	clock = Global.game_time
-	VisualTimer.size.x = Global.screen_size.x - 40
+	Progress.value = 100.0
 	_Timer.start()
 
 func delay_next_screen():
 	disable_buttons()
-	TimerPanel.hide()
 	_Timer.stop()
 	answer_selected = true
 	await get_tree().create_timer(2).timeout
