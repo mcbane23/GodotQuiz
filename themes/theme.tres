@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=9 format=3 uid="uid://cq0m3bxrr77sk"]
+[gd_resource type="Theme" load_steps=10 format=3 uid="uid://cq0m3bxrr77sk"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7hy66"]
 
@@ -13,6 +13,9 @@ bg_color = Color(0.0235294, 0.352941, 0.509804, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1pqvg"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6c42i"]
+bg_color = Color(0.0745098, 0.160784, 0.239216, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oryc4"]
 bg_color = Color(0.109804, 0.447059, 0.576471, 1)
@@ -57,6 +60,11 @@ ItemList/colors/font_color = Color(0.793697, 0.863324, 0.918477, 1)
 ItemList/font_sizes/font_size = 32
 ItemList/styles/panel = SubResource("StyleBoxFlat_1pqvg")
 Label/font_sizes/font_size = 70
+MarginContainer/constants/margin_bottom = 20
+MarginContainer/constants/margin_left = 20
+MarginContainer/constants/margin_right = 20
+MarginContainer/constants/margin_top = 20
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_6c42i")
 RoundButton/base_type = &"Button"
 RoundButton/styles/hover = SubResource("StyleBoxFlat_oryc4")
 RoundButton/styles/normal = SubResource("StyleBoxFlat_1h68f")

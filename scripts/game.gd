@@ -1,20 +1,18 @@
 extends Control
 
-@onready var DisplayText = $Question
-@onready var RestartButton = $RestartButton
-@onready var ExitButton = $ExitButton
-@onready var Button1 = $GridContainer/Button1
-@onready var Button2 = $GridContainer/Button2
-@onready var Button3 = $GridContainer/Button3
-@onready var VisualTimer = $TimerPanel/ColorRect
-@onready var TimerPanel = $TimerPanel
-@onready var Result = $Result
-@onready var _Timer = $Timer2
+@onready var DisplayText = $Background/MarginContainer/Rows/Question
+@onready var ExitButton = $Background/MarginContainer/Rows/ExitButton
+@onready var Button1 = $Background/MarginContainer/Rows/GridContainer/Button1
+@onready var Button2 = $Background/MarginContainer/Rows/GridContainer/Button2
+@onready var Button3 = $Background/MarginContainer/Rows/GridContainer/Button3
+@onready var VisualTimer = $Background/MarginContainer/Rows/PanelContainer/TimerPanel/ColorRect
+@onready var TimerPanel = $Background/MarginContainer/Rows/PanelContainer/TimerPanel
+@onready var Result = $Background/MarginContainer/Rows/PanelContainer/Result
+@onready var _Timer = $Timer
 
 var questions : Array = Global.get_questions()
 var item : Dictionary
 var question_number: int = 1
-var correct_answers : float = 0
 var clock: int = 0
 var answer_selected: bool = false
 var game_end: bool = false
@@ -26,7 +24,6 @@ const red = Color(0.694,0.13,0.122)
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	stylebox_theme_disabled = Button1.get_theme_stylebox("disabled")
-	RestartButton.text = Global.get_label("restart_game")
 	ExitButton.text = Global.get_label("exit")
 	refresh_scene()
 
@@ -36,7 +33,8 @@ func refresh_scene():
 	reset_timer()
 	reset_button_style()
 	if question_number > Global.game_number_of_questions:
-		show_result()
+		game_end = true
+		get_tree().change_scene_to_file("res://scenes/result.tscn")
 	else:
 		show_question()
 		
@@ -53,17 +51,6 @@ func show_question():
 	Button2.text = item.option2
 	Button3.text = item.option3
 
-func show_result():
-	hide_buttons(true)
-	game_end = true
-	var score = round(correct_answers / Global.game_number_of_questions * 100)
-	var greet
-	if score >= 60:
-		greet = Global.get_label("congrats")
-	else:
-		greet = Global.get_label("oh_no")
-	DisplayText.text = "{greet}! {your_result_is}: {correct} ({score}%)".format({"greet": greet, "your_result_is": Global.get_label("your_result_is"), "correct": int(correct_answers), "score": score})
-
 # show/hide elements
 func hide_buttons(state):
 	if state == false:
@@ -71,25 +58,17 @@ func hide_buttons(state):
 		Button2.show()
 		Button3.show()
 		TimerPanel.show()
-		RestartButton.hide()
 	else:
 		Button1.hide()
 		Button2.hide()
 		Button3.hide()
 		TimerPanel.hide()
-		RestartButton.show()
 	Result.hide()
-
-func _on_restart_button_pressed():
-	questions = Global.get_questions()
-	correct_answers = 0
-	question_number = 1
-	refresh_scene()
 
 func _on_option_button_pressed(number):
 	if answer_selected == false:
 		if number == item.correctOption:
-			correct_answers += 1
+			Global.correct_answers += 1
 			highlight_button(number, green)
 			disable_buttons()
 		else:
@@ -130,7 +109,7 @@ func _on_exit_button_pressed():
 
 func _on_timer_timeout():
 	clock -= 1
-	VisualTimer.size.x -= 1080 / Global.game_time
+	VisualTimer.size.x -= (Global.screen_size.x - 40) / Global.game_time
 	if clock == 0 and answer_selected == false and game_end == false:
 		question_number += 1
 		Result.show()
@@ -139,7 +118,7 @@ func _on_timer_timeout():
 
 func reset_timer():
 	clock = Global.game_time
-	VisualTimer.size.x = 1080
+	VisualTimer.size.x = Global.screen_size.x - 40
 	_Timer.start()
 
 func delay_next_screen():

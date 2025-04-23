@@ -1,0 +1,62 @@
+[gd_scene load_steps=4 format=3 uid="uid://dbxbgvk6ujowb"]
+
+[ext_resource type="Script" uid="uid://f1y72qpgylf6" path="res://scripts/result.gd" id="1_gd8ac"]
+[ext_resource type="Theme" uid="uid://cq0m3bxrr77sk" path="res://themes/theme.tres" id="2_532bo"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gd8ac"]
+bg_color = Color(0.0745098, 0.160784, 0.239216, 1)
+
+[node name="Result" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_gd8ac")
+metadata/_edit_lock_ = true
+
+[node name="Background" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_gd8ac")
+
+[node name="MarginContainer" type="MarginContainer" parent="Background"]
+layout_mode = 2
+theme = ExtResource("2_532bo")
+
+[node name="Rows" type="VBoxContainer" parent="Background/MarginContainer"]
+layout_mode = 2
+
+[node name="Result" type="Label" parent="Background/MarginContainer/Rows"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("2_532bo")
+text = "Result"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+clip_text = true
+
+[node name="RestartButton" type="Button" parent="Background/MarginContainer/Rows"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+theme_type_variation = &"RoundButton"
+text = "Restart"
+
+[node name="ExitButton" type="Button" parent="Background/MarginContainer/Rows"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 8
+focus_mode = 0
+theme_type_variation = &"RoundButton"
+text = "Exit"
+
+[connection signal="pressed" from="Background/MarginContainer/Rows/RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="Background/MarginContainer/Rows/ExitButton" to="." method="_on_exit_button_pressed"]

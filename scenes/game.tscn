@@ -12,29 +12,29 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_r67kn")
 
-[node name="Timer2" type="Timer" parent="."]
+[node name="Timer" type="Timer" parent="."]
 autostart = true
 
-[node name="Background" type="ColorRect" parent="."]
+[node name="Background" type="PanelContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.0745098, 0.160784, 0.239216, 1)
-metadata/_edit_lock_ = true
 
-[node name="Question" type="Label" parent="."]
-custom_minimum_size = Vector2(50, 0)
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_left = 40.0
-offset_top = 4.0
-offset_right = -40.0
-offset_bottom = 499.0
-grow_horizontal = 2
+[node name="MarginContainer" type="MarginContainer" parent="Background"]
+layout_mode = 2
+theme = ExtResource("2_brbbq")
+
+[node name="Rows" type="VBoxContainer" parent="Background/MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Question" type="Label" parent="Background/MarginContainer/Rows"]
+custom_minimum_size = Vector2(50, 200)
+layout_mode = 2
+size_flags_vertical = 3
 theme = ExtResource("2_brbbq")
 text = "Question"
 horizontal_alignment = 1
@@ -42,56 +42,12 @@ vertical_alignment = 1
 autowrap_mode = 3
 clip_text = true
 
-[node name="ExitButton" type="Button" parent="."]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -260.0
-offset_top = -137.0
-grow_horizontal = 0
-grow_vertical = 0
-size_flags_vertical = 8
-focus_mode = 0
-theme_type_variation = &"RoundButton"
-theme_override_font_sizes/font_size = 55
-text = "Exit"
-metadata/_edit_lock_ = true
-
-[node name="TimerPanel" type="Panel" parent="."]
-layout_mode = 1
-anchors_preset = 14
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_top = 740.0
-offset_bottom = 770.0
-grow_horizontal = 2
-grow_vertical = 2
-metadata/_edit_lock_ = true
-
-[node name="ColorRect" type="ColorRect" parent="TimerPanel"]
-layout_mode = 1
-offset_top = 5.0
-offset_right = 1000.0
-offset_bottom = 25.0
-color = Color(0, 0.862745, 0.494118, 1)
-metadata/_edit_lock_ = true
-
-[node name="GridContainer" type="GridContainer" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.261458
-anchor_right = 1.0
-anchor_bottom = 0.747917
-grow_horizontal = 2
-grow_vertical = 2
+[node name="GridContainer" type="GridContainer" parent="Background/MarginContainer/Rows"]
+layout_mode = 2
+size_flags_vertical = 3
 metadata/_edit_use_anchors_ = true
-metadata/_edit_lock_ = true
 
-[node name="Button1" type="Button" parent="GridContainer"]
+[node name="Button1" type="Button" parent="Background/MarginContainer/Rows/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -99,7 +55,7 @@ theme_override_font_sizes/font_size = 80
 text = "Option 1"
 autowrap_mode = 3
 
-[node name="Button2" type="Button" parent="GridContainer"]
+[node name="Button2" type="Button" parent="Background/MarginContainer/Rows/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -107,7 +63,7 @@ theme_override_font_sizes/font_size = 80
 text = "Option 2"
 autowrap_mode = 3
 
-[node name="Button3" type="Button" parent="GridContainer"]
+[node name="Button3" type="Button" parent="Background/MarginContainer/Rows/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -115,42 +71,41 @@ theme_override_font_sizes/font_size = 80
 text = "Option 3"
 autowrap_mode = 3
 
-[node name="RestartButton" type="Button" parent="."]
-layout_mode = 1
-anchors_preset = 14
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_top = -68.5
-offset_bottom = 68.5
-grow_horizontal = 2
-grow_vertical = 2
+[node name="PanelContainer" type="PanelContainer" parent="Background/MarginContainer/Rows"]
+layout_mode = 2
 size_flags_vertical = 8
 theme = ExtResource("2_brbbq")
-theme_type_variation = &"RoundButton"
-text = "Restart"
-metadata/_edit_lock_ = true
 
-[node name="Result" type="Label" parent="."]
-custom_minimum_size = Vector2(50, 0)
+[node name="TimerPanel" type="Panel" parent="Background/MarginContainer/Rows/PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="ColorRect" type="ColorRect" parent="Background/MarginContainer/Rows/PanelContainer/TimerPanel"]
 layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -396.0
-offset_bottom = -300.0
-grow_horizontal = 2
-grow_vertical = 0
+offset_top = 5.0
+offset_right = 1000.0
+offset_bottom = 25.0
+color = Color(0, 0.862745, 0.494118, 1)
+
+[node name="Result" type="Label" parent="Background/MarginContainer/Rows/PanelContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_vertical = 1
 theme = ExtResource("2_brbbq")
 text = "Time up"
 horizontal_alignment = 1
 autowrap_mode = 3
-metadata/_edit_lock_ = true
 
-[connection signal="timeout" from="Timer2" to="." method="_on_timer_timeout"]
-[connection signal="pressed" from="ExitButton" to="." method="_on_exit_button_pressed"]
-[connection signal="pressed" from="GridContainer/Button1" to="." method="_on_option_button_pressed" binds= [1]]
-[connection signal="pressed" from="GridContainer/Button2" to="." method="_on_option_button_pressed" binds= [2]]
-[connection signal="pressed" from="GridContainer/Button3" to="." method="_on_option_button_pressed" binds= [3]]
-[connection signal="pressed" from="RestartButton" to="." method="_on_restart_button_pressed"]
+[node name="ExitButton" type="Button" parent="Background/MarginContainer/Rows"]
+layout_mode = 2
+size_flags_vertical = 10
+focus_mode = 0
+theme_type_variation = &"RoundButton"
+text = "Exit"
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="pressed" from="Background/MarginContainer/Rows/GridContainer/Button1" to="." method="_on_option_button_pressed" binds= [1]]
+[connection signal="pressed" from="Background/MarginContainer/Rows/GridContainer/Button2" to="." method="_on_option_button_pressed" binds= [2]]
+[connection signal="pressed" from="Background/MarginContainer/Rows/GridContainer/Button3" to="." method="_on_option_button_pressed" binds= [3]]
+[connection signal="pressed" from="Background/MarginContainer/Rows/ExitButton" to="." method="_on_exit_button_pressed"]

@@ -1,7 +1,7 @@
 extends Control
 
-@onready var ExitButton = $ExitButton
-@onready var StartButton = $Start
+@onready var ExitButton = $Background/MarginContainer/Rows/ExitButton
+@onready var StartButton = $Background/MarginContainer/Rows/Start
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -10,7 +10,7 @@ func _ready():
 func set_defaults():
 	Global.language = "sr"
 	Global.game_time = 30
-	Global.game_number_of_questions = 10
+	Global.game_number_of_questions = 4
 	Global.category = "school"
 	update_buttons()
 		

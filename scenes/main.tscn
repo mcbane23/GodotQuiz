@@ -1,18 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://dubk067ecx42"]
+[gd_scene load_steps=6 format=3 uid="uid://dubk067ecx42"]
 
 [ext_resource type="Script" uid="uid://bwr0gexk6xnrb" path="res://scripts/main.gd" id="1_o5qli"]
 [ext_resource type="Theme" uid="uid://cq0m3bxrr77sk" path="res://themes/theme.tres" id="2_0wfyh"]
 [ext_resource type="Texture2D" uid="uid://b0x51itahqb1s" path="res://gfx/icons/serbia_round_button_with_metal_frame_256.png" id="3_jyhfs"]
 [ext_resource type="Texture2D" uid="uid://df4xlw03b34hj" path="res://gfx/icons/united_kingdom_round_button_with_metal_frame_256.png" id="4_tbgi4"]
 
-[sub_resource type="Gradient" id="Gradient_1lde6"]
-offsets = PackedFloat32Array(0, 0.994505)
-colors = PackedColorArray(0.13577, 0.273826, 0.505951, 1, 0.310913, 0.504277, 0.828224, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_sgp6g"]
-gradient = SubResource("Gradient_1lde6")
-fill_from = Vector2(0, 1)
-fill_to = Vector2(0, 0)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jyhfs"]
+bg_color = Color(0.0745098, 0.160784, 0.239216, 1)
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -25,88 +19,60 @@ size_flags_horizontal = 4
 script = ExtResource("1_o5qli")
 metadata/_edit_use_anchors_ = true
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="Background" type="PanelContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.0745098, 0.160784, 0.239216, 1)
+theme_override_styles/panel = SubResource("StyleBoxFlat_jyhfs")
 
-[node name="Background" type="TextureRect" parent="."]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = SubResource("GradientTexture2D_sgp6g")
+[node name="MarginContainer" type="MarginContainer" parent="Background"]
+layout_mode = 2
+theme = ExtResource("2_0wfyh")
 
-[node name="ExitButton" type="Button" parent="."]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -260.0
-offset_top = -137.0
-grow_horizontal = 0
-grow_vertical = 0
-size_flags_vertical = 8
-focus_mode = 0
-theme_type_variation = &"RoundButton"
-theme_override_font_sizes/font_size = 55
-text = "Exit"
+[node name="Rows" type="VBoxContainer" parent="Background/MarginContainer"]
+layout_mode = 2
 
-[node name="Start" type="Button" parent="."]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -383.0
-offset_top = -109.5
-offset_right = 383.0
-offset_bottom = 109.5
-grow_horizontal = 2
-grow_vertical = 2
-theme_type_variation = &"RoundButton"
-theme_override_font_sizes/font_size = 160
-text = "Start"
-
-[node name="GridContainer" type="GridContainer" parent="."]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_right = 271.0
-offset_bottom = 200.0
-grow_horizontal = 2
-scale = Vector2(0.8, 0.8)
+[node name="GridContainer" type="GridContainer" parent="Background/MarginContainer/Rows"]
+layout_mode = 2
+size_flags_vertical = 3
 columns = 2
 
-[node name="Sr" type="Button" parent="GridContainer"]
+[node name="Sr" type="Button" parent="Background/MarginContainer/Rows/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 2
-size_flags_vertical = 3
+size_flags_vertical = 2
 theme = ExtResource("2_0wfyh")
 theme_override_constants/align_to_largest_stylebox = 1
 icon = ExtResource("3_jyhfs")
 flat = true
 
-[node name="En" type="Button" parent="GridContainer"]
+[node name="En" type="Button" parent="Background/MarginContainer/Rows/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 10
-size_flags_vertical = 3
+size_flags_vertical = 2
 theme = ExtResource("2_0wfyh")
 theme_override_constants/align_to_largest_stylebox = 1
 icon = ExtResource("4_tbgi4")
 flat = true
 
-[connection signal="pressed" from="ExitButton" to="." method="_on_exit_button_pressed"]
-[connection signal="pressed" from="Start" to="." method="_on_start_pressed"]
-[connection signal="pressed" from="GridContainer/Sr" to="." method="_on_sr_pressed"]
-[connection signal="pressed" from="GridContainer/En" to="." method="_on_en_pressed"]
+[node name="Start" type="Button" parent="Background/MarginContainer/Rows"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_type_variation = &"RoundButton"
+theme_override_font_sizes/font_size = 160
+text = "Start"
+
+[node name="ExitButton" type="Button" parent="Background/MarginContainer/Rows"]
+layout_mode = 2
+size_flags_vertical = 10
+focus_mode = 0
+theme_type_variation = &"RoundButton"
+text = "Exit"
+
+[connection signal="pressed" from="Background/MarginContainer/Rows/GridContainer/Sr" to="." method="_on_sr_pressed"]
+[connection signal="pressed" from="Background/MarginContainer/Rows/GridContainer/En" to="." method="_on_en_pressed"]
+[connection signal="pressed" from="Background/MarginContainer/Rows/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="Background/MarginContainer/Rows/ExitButton" to="." method="_on_exit_button_pressed"]
