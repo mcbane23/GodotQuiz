@@ -110,4 +110,7 @@ theme_type_variation = &"RoundButton"
 text = "Exit"
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="pressed" from="Background/MarginContainer/Rows/ButtonsContainer/Button1" to="." method="_on_option_button_pressed" binds= [1]]
+[connection signal="pressed" from="Background/MarginContainer/Rows/ButtonsContainer/Button2" to="." method="_on_option_button_pressed" binds= [2]]
+[connection signal="pressed" from="Background/MarginContainer/Rows/ButtonsContainer/Button3" to="." method="_on_option_button_pressed" binds= [3]]
 [connection signal="pressed" from="Background/MarginContainer/Rows/ExitButton" to="." method="_on_exit_button_pressed"]
