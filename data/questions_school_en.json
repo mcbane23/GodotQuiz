@@ -1,0 +1,275 @@
+[
+	{
+		"question": "How long does one year last?",
+		"option1": "365 days",
+		"option2": "30 days",
+		"option3": "7 days",
+		"correctOption": 1
+	},
+	{
+		"question": "What is a leap year?",
+		"option1": "A year with more holidays",
+		"option2": "A year with 366 days",
+		"option3": "A year with fewer days",
+		"correctOption": 2
+	},
+	{
+		"question": "What is the fifth month of the year?",
+		"option1": "May",
+		"option2": "June",
+		"option3": "April",
+		"correctOption": 1
+	},
+	{
+		"question": "How many months are there in a year?",
+		"option1": "10",
+		"option2": "12",
+		"option3": "11",
+		"correctOption": 2
+	},
+	{
+		"question": "What is the first day of the weekend?",
+		"option1": "Monday",
+		"option2": "Saturday",
+		"option3": "Sunday",
+		"correctOption": 2
+	},
+	{
+		"question": "How many days does February have in a leap year?",
+		"option1": "28",
+		"option2": "31",
+		"option3": "29",
+		"correctOption": 3
+	},
+	{
+		"question": "What is the last month of the year?",
+		"option1": "November",
+		"option2": "January",
+		"option3": "December",
+		"correctOption": 3
+	},
+	{
+		"question": "How many days are in a week?",
+		"option1": "5",
+		"option2": "7",
+		"option3": "6",
+		"correctOption": 2
+	},
+	{
+		"question": "Which month comes after September?",
+		"option1": "November",
+		"option2": "October",
+		"option3": "August",
+		"correctOption": 2
+	},
+	{
+		"question": "What is the first month of the year?",
+		"option1": "January",
+		"option2": "February",
+		"option3": "December",
+		"correctOption": 1
+	},
+	{
+		"question": "How many hours are in a day?",
+		"option1": "12",
+		"option2": "24",
+		"option3": "60",
+		"correctOption": 2
+	},
+	{
+		"question": "How many minutes are in an hour?",
+		"option1": "60",
+		"option2": "24",
+		"option3": "100",
+		"correctOption": 1
+	},
+	{
+		"question": "What time is it if the short hand points to 6 and the long hand to 12?",
+		"option1": "Six o'clock",
+		"option2": "Twelve o'clock",
+		"option3": "Nine o'clock",
+		"correctOption": 1
+	},
+	{
+		"question": "What time is it if the short hand points to 3 and the long hand to 6?",
+		"option1": "Three-thirty",
+		"option2": "Six o'clock",
+		"option3": "3:06",
+		"correctOption": 1
+	},
+	{
+		"question": "What time is it if the short hand points to 6 and the long hand to 9?",
+		"option1": "Six and a half",
+		"option2": "Nine o'clock",
+		"option3": "Quarter to seven",
+		"correctOption": 3
+	},
+	{
+		"question": "On what date is Christmas?",
+		"option1": "December 9",
+		"option2": "January 7",
+		"option3": "January 12",
+		"correctOption": 2
+	},
+	{
+		"question": "When does spring begin?",
+		"option1": "March 21",
+		"option2": "June 21",
+		"option3": "September 23",
+		"correctOption": 1
+	},
+	{
+		"question": "When does summer begin?",
+		"option1": "March 21",
+		"option2": "June 21",
+		"option3": "September 23",
+		"correctOption": 2
+	},
+	{
+		"question": "When does autumn begin?",
+		"option1": "June 21",
+		"option2": "September 23",
+		"option3": "December 21",
+		"correctOption": 2
+	},
+	{
+		"question": "When does winter begin?",
+		"option1": "June 21",
+		"option2": "September 23",
+		"option3": "December 21",
+		"correctOption": 3
+	},
+	{
+		"question": "Which season is when the leaves fall from the trees?",
+		"option1": "Spring",
+		"option2": "Summer",
+		"option3": "Autumn",
+		"correctOption": 3
+	},
+	{
+		"question": "Which season is when flowers and trees bloom?",
+		"option1": "Spring",
+		"option2": "Summer",
+		"option3": "Autumn",
+		"correctOption": 1
+	},
+	{
+		"question": "How many days does January have?",
+		"option1": "30",
+		"option2": "31",
+		"option3": "28",
+		"correctOption": 2
+	},
+	{
+		"question": "How many days does April have?",
+		"option1": "30",
+		"option2": "31",
+		"option3": "28",
+		"correctOption": 1
+	},
+	{
+		"question": "How many days does November have?",
+		"option1": "30",
+		"option2": "31",
+		"option3": "28",
+		"correctOption": 1
+	},
+	{
+		"question": "Which month comes after January?",
+		"option1": "February",
+		"option2": "March",
+		"option3": "April",
+		"correctOption": 1
+	},
+	{
+		"question": "Which month comes before April?",
+		"option1": "May",
+		"option2": "March",
+		"option3": "June",
+		"correctOption": 2
+	},
+	{
+		"question": "Which month comes after October?",
+		"option1": "November",
+		"option2": "December",
+		"option3": "September",
+		"correctOption": 1
+	},
+	{
+		"question": "Which month comes before December?",
+		"option1": "November",
+		"option2": "January",
+		"option3": "October",
+		"correctOption": 1
+	},
+	{
+		"question": "What is the first day of the week?",
+		"option1": "Monday",
+		"option2": "Sunday",
+		"option3": "Saturday",
+		"correctOption": 1
+	},
+	{
+		"question": "What is the last day of the week?",
+		"option1": "Friday",
+		"option2": "Saturday",
+		"option3": "Sunday",
+		"correctOption": 3
+	},
+	{
+		"question": "Which day comes after Tuesday?",
+		"option1": "Wednesday",
+		"option2": "Thursday",
+		"option3": "Monday",
+		"correctOption": 1
+	},
+	{
+		"question": "Which day comes before Friday?",
+		"option1": "Thursday",
+		"option2": "Wednesday",
+		"option3": "Saturday",
+		"correctOption": 1
+	},
+	{
+		"question": "Which season is when the weather is warm and sunny, and people go to the beach?",
+		"option1": "Spring",
+		"option2": "Summer",
+		"option3": "Autumn",
+		"correctOption": 2
+	},
+	{
+		"question": "Which season is when snow falls and people make snowmen?",
+		"option1": "Spring",
+		"option2": "Autumn",
+		"option3": "Winter",
+		"correctOption": 3
+	},
+	{
+		"question": "Which season is when nature awakens, trees and flowers begin to bloom?",
+		"option1": "Spring",
+		"option2": "Summer",
+		"option3": "Autumn",
+		"correctOption": 1
+	},
+	{
+		"question": "Which season is when leaves on trees turn yellow, orange, and red and fall off?",
+		"option1": "Spring",
+		"option2": "Autumn",
+		"option3": "Winter",
+		"correctOption": 2
+	},
+	{
+		"question": "Which season has the longest and warmest days?",
+		"option1": "Spring",
+		"option2": "Summer",
+		"option3": "Autumn",
+		"correctOption": 2
+	},
+	{
+		"question": "Which season has the shortest and coldest days?",
+		"option1": "Spring",
+		"option2": "Autumn",
+		"option3": "Winter",
+		"correctOption": 3
+	}
+]

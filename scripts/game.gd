@@ -11,13 +11,7 @@ extends Control
 @onready var Result = $Result
 @onready var _Timer = $Timer2
 
-# configure round time and number of questions per game
-var game_time: int = Global.game_time
-var game_number_of_questions: int = Global.game_number_of_questions
-var language = Global.language
-
-var questions : Array = Global.read_json_file("res://data/questions_" + language + ".json")
-var labels_data: Array = Global.read_json_file("res://data/labels.json")
+var questions : Array = Global.get_questions()
 var item : Dictionary
 var question_number: int = 1
 var correct_answers : float = 0
@@ -41,7 +35,7 @@ func refresh_scene():
 	game_end = false
 	reset_timer()
 	reset_button_style()
-	if question_number > game_number_of_questions:
+	if question_number > Global.game_number_of_questions:
 		show_result()
 	else:
 		show_question()
@@ -55,14 +49,14 @@ func show_question():
 	# remove selected question from array
 	questions.remove_at(0)
 	DisplayText.text = str(question_number, ". ", item.question)
-	Button1.text = item.options[0]
-	Button2.text = item.options[1]
-	Button3.text = item.options[2]
+	Button1.text = item.option1
+	Button2.text = item.option2
+	Button3.text = item.option3
 
 func show_result():
 	hide_buttons(true)
 	game_end = true
-	var score = round(correct_answers / game_number_of_questions * 100)
+	var score = round(correct_answers / Global.game_number_of_questions * 100)
 	var greet
 	if score >= 60:
 		greet = Global.get_label("congrats")
@@ -87,14 +81,14 @@ func hide_buttons(state):
 	Result.hide()
 
 func _on_restart_button_pressed():
-	questions = Global.read_json_file("res://data/questions_" + language + ".json")
+	questions = Global.get_questions()
 	correct_answers = 0
 	question_number = 1
 	refresh_scene()
 
 func _on_option_button_pressed(number):
 	if answer_selected == false:
-		if number == item.correctOptionIndex:
+		if number == item.correctOption:
 			correct_answers += 1
 			highlight_button(number, green)
 			disable_buttons()
@@ -108,11 +102,11 @@ func highlight_button(number, color):
 	var new_stylebox : StyleBoxFlat = StyleBoxFlat.new()
 	new_stylebox.bg_color = color
 	match number:
-		0:
-			Button1.add_theme_stylebox_override("disabled", new_stylebox)
 		1:
-			Button2.add_theme_stylebox_override("disabled", new_stylebox)
+			Button1.add_theme_stylebox_override("disabled", new_stylebox)
 		2:
+			Button2.add_theme_stylebox_override("disabled", new_stylebox)
+		3:
 			Button3.add_theme_stylebox_override("disabled", new_stylebox)
 			
 func disable_buttons():
@@ -136,7 +130,7 @@ func _on_exit_button_pressed():
 
 func _on_timer_timeout():
 	clock -= 1
-	VisualTimer.size.x -= 1080 / game_time
+	VisualTimer.size.x -= 1080 / Global.game_time
 	if clock == 0 and answer_selected == false and game_end == false:
 		question_number += 1
 		Result.show()
@@ -144,7 +138,7 @@ func _on_timer_timeout():
 		delay_next_screen()
 
 func reset_timer():
-	clock = game_time
+	clock = Global.game_time
 	VisualTimer.size.x = 1080
 	_Timer.start()
 
@@ -153,6 +147,6 @@ func delay_next_screen():
 	TimerPanel.hide()
 	_Timer.stop()
 	answer_selected = true
-	await get_tree().create_timer(3).timeout
+	await get_tree().create_timer(2).timeout
 	reset_timer()
 	refresh_scene()

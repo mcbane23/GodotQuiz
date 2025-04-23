@@ -3,12 +3,17 @@ extends Control
 @onready var ExitButton = $ExitButton
 @onready var StartButton = $Start
 
-var labels_data: Array = Global.read_json_file("res://data/labels.json")
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	update_buttons()
+	set_defaults()
 
+func set_defaults():
+	Global.language = "sr"
+	Global.game_time = 30
+	Global.game_number_of_questions = 10
+	Global.category = "school"
+	update_buttons()
+		
 func _on_exit_button_pressed():
 	get_tree().quit()
 
