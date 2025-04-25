@@ -59,6 +59,7 @@ func _on_option_button_pressed(number):
 			highlight_button(number, red)
 			disable_buttons()
 		question_number += 1
+		Global.time_left += clock
 		delay_next_screen()
 
 func highlight_button(number, color):

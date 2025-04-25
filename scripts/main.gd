@@ -9,8 +9,6 @@ func _ready():
 
 func set_defaults():
 	Global.language = "sr"
-	Global.game_time = 30
-	Global.game_number_of_questions = 10
 	Global.category = "school"
 	update_buttons()
 		
