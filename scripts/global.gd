@@ -5,7 +5,7 @@ var screen_size = DisplayServer.window_get_size()
 
 # configure round time, number of questions per game and language
 var game_time: int = 10
-var game_number_of_questions: int = 5
+var game_number_of_questions: int = 10
 var language = "en"
 var category = ""
 
