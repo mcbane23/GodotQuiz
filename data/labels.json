@@ -7,6 +7,13 @@
 		}
 	},
 	{
+		"key": "options",
+		"translations": {
+			"en": "Options",
+			"sr": "Подешавања"
+		}
+	},
+	{
 		"key": "congrats",
 		"translations": {
 			"en": "Congratulations",

@@ -1,7 +1,8 @@
 extends Control
 
-@onready var ExitButton = $Background/MarginContainer/Rows/ExitButton
-@onready var StartButton = $Background/MarginContainer/Rows/Start
+@onready var ExitButton = $MarginContainer/Buttons/ExitButton
+@onready var OptionsButton = $MarginContainer/Buttons/Options
+@onready var StartButton = $MarginContainer/Buttons/Start
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -25,6 +26,7 @@ func _on_en_pressed():
 
 func update_buttons():
 	StartButton.text = Global.get_label("start")
+	OptionsButton.text = Global.get_label("options")
 	ExitButton.text = Global.get_label("exit")
 	
 func _on_start_pressed():
