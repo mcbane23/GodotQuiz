@@ -35,6 +35,10 @@ window/handheld/orientation=1
 
 theme/custom="uid://cq0m3bxrr77sk"
 
+[internationalization]
+
+locale/translations=PackedStringArray("res://data/translations.en.translation", "res://data/translations.sr.translation")
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"

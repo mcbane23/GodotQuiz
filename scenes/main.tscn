@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://dubk067ecx42"]
+[gd_scene load_steps=6 format=3 uid="uid://dubk067ecx42"]
 
 [ext_resource type="Script" uid="uid://bwr0gexk6xnrb" path="res://scripts/main.gd" id="1_o5qli"]
+[ext_resource type="Theme" uid="uid://cx3tftvft3273" path="res://themes/theme_menu.tres" id="1_tbgi4"]
 [ext_resource type="Theme" uid="uid://cq0m3bxrr77sk" path="res://themes/theme.tres" id="2_0wfyh"]
 [ext_resource type="Texture2D" uid="uid://b0x51itahqb1s" path="res://gfx/icons/serbia_round_button_with_metal_frame_256.png" id="3_jyhfs"]
 [ext_resource type="Texture2D" uid="uid://df4xlw03b34hj" path="res://gfx/icons/united_kingdom_round_button_with_metal_frame_256.png" id="4_tbgi4"]
@@ -13,8 +14,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
+theme = ExtResource("1_tbgi4")
 script = ExtResource("1_o5qli")
-metadata/_edit_use_anchors_ = true
 
 [node name="Background" type="PanelContainer" parent="."]
 layout_mode = 1
@@ -23,7 +24,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("2_0wfyh")
 metadata/_edit_lock_ = true
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
@@ -31,20 +31,70 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = 514.0
+offset_top = 368.0
+offset_bottom = -205.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("2_0wfyh")
 
-[node name="Icons" type="GridContainer" parent="MarginContainer"]
-visible = false
+[node name="Buttons" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 20
+
+[node name="Start" type="Button" parent="MarginContainer/Buttons"]
+layout_mode = 2
+size_flags_vertical = 6
+theme_type_variation = &"RoundButton"
+text = "start"
+
+[node name="Options" type="Button" parent="MarginContainer/Buttons"]
+layout_mode = 2
+size_flags_vertical = 6
+theme_type_variation = &"RoundButton"
+text = "options"
+
+[node name="ExitButton" type="Button" parent="MarginContainer/Buttons"]
+layout_mode = 2
+size_flags_vertical = 10
+focus_mode = 0
+theme_type_variation = &"RoundButton"
+text = "exit"
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -262.5
+offset_top = -908.0
+offset_right = 263.5
+offset_bottom = -528.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+size_flags_vertical = 0
+text = "quiz"
+horizontal_alignment = 1
+
+[node name="Icons" type="GridContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -520.0
+offset_top = -200.0
+offset_right = 520.0
+grow_horizontal = 2
+grow_vertical = 0
 size_flags_vertical = 2
-theme = ExtResource("2_0wfyh")
 columns = 2
 metadata/_edit_lock_ = true
 
-[node name="Sr" type="Button" parent="MarginContainer/Icons"]
+[node name="Sr" type="Button" parent="Icons"]
 layout_mode = 2
 size_flags_horizontal = 2
 size_flags_vertical = 2
@@ -53,7 +103,7 @@ theme_override_constants/align_to_largest_stylebox = 1
 icon = ExtResource("3_jyhfs")
 flat = true
 
-[node name="En" type="Button" parent="MarginContainer/Icons"]
+[node name="En" type="Button" parent="Icons"]
 layout_mode = 2
 size_flags_horizontal = 10
 size_flags_vertical = 2
@@ -62,54 +112,7 @@ theme_override_constants/align_to_largest_stylebox = 1
 icon = ExtResource("4_tbgi4")
 flat = true
 
-[node name="Buttons" type="VBoxContainer" parent="MarginContainer"]
-layout_mode = 2
-size_flags_vertical = 4
-theme = ExtResource("2_0wfyh")
-theme_override_constants/separation = 20
-
-[node name="Start" type="Button" parent="MarginContainer/Buttons"]
-layout_mode = 2
-size_flags_vertical = 6
-theme = ExtResource("2_0wfyh")
-theme_type_variation = &"RoundButton"
-text = "Start"
-
-[node name="Options" type="Button" parent="MarginContainer/Buttons"]
-layout_mode = 2
-size_flags_vertical = 6
-theme = ExtResource("2_0wfyh")
-theme_type_variation = &"RoundButton"
-text = "Options"
-
-[node name="ExitButton" type="Button" parent="MarginContainer/Buttons"]
-layout_mode = 2
-size_flags_vertical = 10
-focus_mode = 0
-theme = ExtResource("2_0wfyh")
-theme_type_variation = &"RoundButton"
-text = "Exit"
-
-[node name="Label" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -251.0
-offset_top = -705.0
-offset_right = 252.0
-offset_bottom = -389.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 6
-size_flags_vertical = 0
-theme = ExtResource("2_0wfyh")
-text = "Quiz"
-horizontal_alignment = 1
-
-[connection signal="pressed" from="MarginContainer/Icons/Sr" to="." method="_on_sr_pressed"]
-[connection signal="pressed" from="MarginContainer/Icons/En" to="." method="_on_en_pressed"]
 [connection signal="pressed" from="MarginContainer/Buttons/Start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="MarginContainer/Buttons/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="Icons/Sr" to="." method="_on_sr_pressed"]
+[connection signal="pressed" from="Icons/En" to="." method="_on_en_pressed"]

@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://clhsll5k746a3"
-path="res://.godot/imported/Letters for Learners.ttf-3691adfb15fb9c3a70e9f8f2e80fa855.fontdata"
+uid="uid://c2r53m67mfj2c"
+path="res://.godot/imported/Beograd.ttf-22fc517ecbb1448188d9301a05f216d5.fontdata"
 
 [deps]
 
-source_file="res://fonts/Letters for Learners.ttf"
-dest_files=["res://.godot/imported/Letters for Learners.ttf-3691adfb15fb9c3a70e9f8f2e80fa855.fontdata"]
+source_file="res://fonts/Beograd.ttf"
+dest_files=["res://.godot/imported/Beograd.ttf-22fc517ecbb1448188d9301a05f216d5.fontdata"]
 
 [params]
 

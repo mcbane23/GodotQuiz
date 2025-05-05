@@ -1,33 +1,33 @@
 extends Control
 
-@onready var ExitButton = $MarginContainer/Buttons/ExitButton
-@onready var OptionsButton = $MarginContainer/Buttons/Options
-@onready var StartButton = $MarginContainer/Buttons/Start
+@onready var Title = $Title
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	set_defaults()
 
+
 func set_defaults():
-	Global.language = "sr"
+	change_lang("sr")
 	Global.category = "school"
-	update_buttons()
-		
+
+
 func _on_exit_button_pressed():
 	get_tree().quit()
 
+
 func _on_sr_pressed():
-	Global.language = "sr"
-	update_buttons()
+	change_lang("sr")
+
 
 func _on_en_pressed():
-	Global.language = "en"
-	update_buttons()
+	change_lang("en")
 
-func update_buttons():
-	StartButton.text = Global.get_label("start")
-	OptionsButton.text = Global.get_label("options")
-	ExitButton.text = Global.get_label("exit")
-	
+
+func change_lang(lang):
+	Global.language = lang
+	TranslationServer.set_locale(lang)
+
+
 func _on_start_pressed():
 	get_tree().change_scene_to_file("res://scenes/game.tscn")

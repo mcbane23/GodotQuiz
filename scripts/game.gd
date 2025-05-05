@@ -23,8 +23,9 @@ const red = Color(0.694,0.13,0.122)
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	stylebox_theme_disabled = Button1.get_theme_stylebox("disabled")
-	ExitButton.text = Global.get_label("exit")
+	ExitButton.text = tr("exit")
 	refresh_scene()
+
 
 func refresh_scene():
 	answer_selected = false
@@ -36,7 +37,8 @@ func refresh_scene():
 		get_tree().change_scene_to_file("res://scenes/result.tscn")
 	else:
 		show_question()
-		
+
+
 func show_question():
 	# shuffle questions
 	questions.shuffle()
@@ -48,6 +50,7 @@ func show_question():
 	Button1.text = item.option1
 	Button2.text = item.option2
 	Button3.text = item.option3
+
 
 func _on_option_button_pressed(number):
 	if answer_selected == false:
@@ -62,35 +65,47 @@ func _on_option_button_pressed(number):
 		Global.time_left += clock
 		delay_next_screen()
 
+
 func highlight_button(number, color):
 	var new_stylebox : StyleBoxFlat = StyleBoxFlat.new()
 	new_stylebox.bg_color = color
 	match number:
 		1:
+			Button1.add_theme_color_override("font_disabled_color", "#eae6df")
 			Button1.add_theme_stylebox_override("disabled", new_stylebox)
 		2:
+			Button2.add_theme_color_override("font_disabled_color", "#eae6df")
 			Button2.add_theme_stylebox_override("disabled", new_stylebox)
 		3:
+			Button3.add_theme_color_override("font_disabled_color", "#eae6df")
 			Button3.add_theme_stylebox_override("disabled", new_stylebox)
-			
+
+
 func disable_buttons():
 	Button1.disabled = true
 	Button2.disabled = true
 	Button3.disabled = true
-	
+
+
 func enable_buttons():
 	Button1.disabled = false
 	Button2.disabled = false
 	Button3.disabled = false
 
+
 func reset_button_style():
 	enable_buttons()
+	Button1.add_theme_color_override("font_disabled_color", "#142e54")
+	Button2.add_theme_color_override("font_disabled_color", "#142e54")
+	Button3.add_theme_color_override("font_disabled_color", "#142e54")
 	Button1.add_theme_stylebox_override("disabled", stylebox_theme_disabled)
 	Button2.add_theme_stylebox_override("disabled", stylebox_theme_disabled)
 	Button3.add_theme_stylebox_override("disabled", stylebox_theme_disabled)
 
+
 func _on_exit_button_pressed():
 	get_tree().quit()
+
 
 func _on_timer_timeout():
 	clock -= 1
@@ -99,14 +114,16 @@ func _on_timer_timeout():
 	if clock == 0 and answer_selected == false and game_end == false:
 		question_number += 1
 		Progress.value = 0
-		Result.text = Global.get_label("time_is_up")
+		Result.text = tr("time_is_up")
 		delay_next_screen()
+
 
 func reset_timer():
 	Result.text = ""
 	clock = Global.game_time
 	Progress.value = 100.0
 	_Timer.start()
+
 
 func delay_next_screen():
 	disable_buttons()

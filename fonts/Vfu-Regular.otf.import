@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://b01cna3pyu1og"
-path="res://.godot/imported/KGPerfectPenmanship.ttf-2511f2f7bdbfdd7293824aac4c4ad9de.fontdata"
+uid="uid://mcypd2d0dfuh"
+path="res://.godot/imported/Vfu-Regular.otf-b52faf996c583e4d5613e0b675b0ebde.fontdata"
 
 [deps]
 
-source_file="res://fonts/KGPerfectPenmanship.ttf"
-dest_files=["res://.godot/imported/KGPerfectPenmanship.ttf-2511f2f7bdbfdd7293824aac4c4ad9de.fontdata"]
+source_file="res://fonts/Vfu-Regular.otf"
+dest_files=["res://.godot/imported/Vfu-Regular.otf-b52faf996c583e4d5613e0b675b0ebde.fontdata"]
 
 [params]
 

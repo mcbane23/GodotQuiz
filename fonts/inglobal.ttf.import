@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://b4526pxi334du"
-path="res://.godot/imported/KIdDOS-Regular.ttf-47e8bfdc35e99019048da071fd7ec0c5.fontdata"
+uid="uid://ckimmwwvbpi7r"
+path="res://.godot/imported/inglobal.ttf-2e8121cef93a91828ad16c6046ed4c9f.fontdata"
 
 [deps]
 
-source_file="res://fonts/KIdDOS-Regular.ttf"
-dest_files=["res://.godot/imported/KIdDOS-Regular.ttf-47e8bfdc35e99019048da071fd7ec0c5.fontdata"]
+source_file="res://fonts/inglobal.ttf"
+dest_files=["res://.godot/imported/inglobal.ttf-2e8121cef93a91828ad16c6046ed4c9f.fontdata"]
 
 [params]
 

@@ -1,6 +1,5 @@
 extends Node
 
-var labels_data: Array = read_json_file("res://data/labels.json")
 var screen_size = DisplayServer.window_get_size()
 
 # configure round time, number of questions per game and language
@@ -20,18 +19,18 @@ func calculate_score():
 	print ("Total time: ", total_time)
 	var score: float = pow(correct_answers, 2) * (1 + time_left / total_time) * 100
 	return score
-	
-	
+
+
 func reset_score():
 	time_left = 0
 	correct_answers = 0
-	
-	
+
+
 func get_questions():
 	var questions : Array = read_json_file("res://data/questions_" + category + "_" + language + ".json")
 	return questions
-	
-	
+
+
 func read_json_file(path):
 	var file = FileAccess.open(path,FileAccess.READ)
 	var str_content = file.get_as_text()
@@ -50,11 +49,3 @@ func load_scores():
 	var file = FileAccess.open(score_file, FileAccess.READ)
 	var content = file.get_as_text()
 	return content
-
-
-# Function to get label by key and language
-func get_label(key: String) -> String:
-	for label in labels_data:
-		if label.key == key:
-			return label.translations[language] if language in label.translations else "Translation not found"
-	return "Key not found"

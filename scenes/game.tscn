@@ -60,7 +60,6 @@ custom_minimum_size = Vector2(0, 250)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_font_sizes/font_size = 80
 text = "Option 1"
 autowrap_mode = 3
 
@@ -69,7 +68,6 @@ custom_minimum_size = Vector2(0, 250)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_font_sizes/font_size = 80
 text = "Option 2"
 autowrap_mode = 3
 
@@ -78,7 +76,6 @@ custom_minimum_size = Vector2(0, 250)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_font_sizes/font_size = 80
 text = "Option 3"
 autowrap_mode = 3
 
